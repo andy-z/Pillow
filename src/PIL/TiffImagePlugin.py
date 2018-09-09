@@ -717,6 +717,8 @@ class ImageFileDirectory_v2(MutableMapping):
     def load(self, fp):
 
         self.reset()
+        # assumption is that `self.next` points to start of TIFF section
+        fp.seek(self.next)
         self._offset = fp.tell()
 
         try:
